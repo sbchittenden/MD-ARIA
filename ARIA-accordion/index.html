@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>ARIA Accordion</title>
+  <meta charset="utf-8" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="aria-acc.css">
+</head>
+
+<body>
+  <div class="accordion">
+    <h3 id="heading1" class="accordion-heading"><span aria-expanded="true" role="button" aria-controls="panel1" tabindex="0">Heading 1</span></h3>
+    <div id="panel1" class="accordion-panel" aria-hidden="false" role="region" aria-labelledby="heading1"><h4>Content for panel 1</h4></div>
+    <h3 id="heading2" class="accordion-heading"><span aria-expanded="false" role="button" aria-controls="panel2" tabindex="0">Heading 2</span></h3>
+    <div id="panel2" class="accordion-panel" aria-hidden="true" role="region" aria-labelledby="heading2"><h4>Content for panel 2</h4></div>
+    <h3 id="heading3" class="accordion-heading"><span aria-expanded="false" role="button" aria-controls="panel3" tabindex="0">Heading 3</span></h3>
+    <div id="panel3" class="accordion-panel" aria-hidden="true" role="region" aria-labelledby="heading3"><h4>Content for panel 3</h4></div>
+    <h3 id="heading4" class="accordion-heading"><span aria-expanded="false" role="button" aria-controls="panel4" tabindex="0">Heading 4</span></h3>
+    <div id="panel4" class="accordion-panel" aria-hidden="true" role="region" aria-labelledby="heading4"><h4>Content for panel 4</h4></div>
+  </div>
+
+  <script src="aria-acc.js"></script>
+</body>
+
+</html>
