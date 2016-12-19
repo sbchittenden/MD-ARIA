@@ -8,7 +8,7 @@ var accordionApp = (function() {
     //cacheDom
     accordion = document.querySelector('.accordion');
     accButtons = accordion.querySelectorAll('span[role="button"]');
-
+    addPanels = accordion.querySelectorAll('.accordion-panel');
     // build event listeners
     _buildListeners();
   }
@@ -22,6 +22,7 @@ var accordionApp = (function() {
     var tEl = e.target;
     var btnFor;
     var panel;
+    var isHidden;
     if (tEl.hasAttribute('aria-controls')) {
       btnFor = tEl.getAttribute('aria-controls');
       panel = document.getElementById(btnFor);
@@ -38,6 +39,7 @@ var accordionApp = (function() {
   function _handleKeyEvents(e) {
     var key = e.keyCode;
     var activeEl = e.target;
+    var panel;
     if ((key === 32 || key === 13) && activeEl.getAttribute('role') === 'button') {
       _toggle(e);
     } else {
@@ -46,22 +48,34 @@ var accordionApp = (function() {
   }
 
   function _keyNav(e) {
-
     var key = e.keyCode;
     var activeHeader = e.target.parentNode;
     var activeId = activeHeader.id;
-
+    var prevHeader;
+    var nextHeader;
+    var prevChild;
+    var nextChild;
     if (key === 37 || key === 38) { // left arrow or up arrow
       if (activeHeader === accButtons[0].parentNode) {
-        accButtons[3].focus();
+        activeHeader = accButtons[3].parentNode;
+        prevChild = accButtons[3];
+        prevChild.focus();
       } else {
-        activeHeader.previousElementSibling.previousElementSibling.firstChild.focus();
+        prevHeader = activeHeader.previousElementSibling.previousElementSibling;
+        prevChild = prevHeader.firstChild;
+        activeHeader = prevHeader;
+        prevChild.focus();
       }
     } else if (key === 39 || key === 40) { // right arrow or down arrow
       if (activeHeader === accButtons[3].parentNode) {
-        accButtons[0].focus();
+        activeHeader = accButtons[0].parentNode;
+        nextChild = accButtons[0];
+        nextChild.focus();
       } else {
-        activeHeader.nextElementSibling.nextElementSibling.firstChild.focus();
+        nextHeader = activeHeader.nextElementSibling.nextElementSibling;
+        nextChild = nextHeader.firstChild;
+        activeHeader = nextHeader;
+        nextChild.focus();
       }
     }
   }
